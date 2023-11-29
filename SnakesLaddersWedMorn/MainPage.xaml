@@ -4,6 +4,12 @@
              x:Class="SnakesLaddersWedMorn.MainPage"
              Title="Snakes and Ladders">
 
- 
+    <Grid x:Name="GameBoard" HorizontalOptions="Center" 
+       HeightRequest="480" WidthRequest="480" RowDefinitions="*,*,*,*,*,*,*,*,*,*"
+       ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" BackgroundColor="Blue">
+        
+        
+    </Grid>
+
 
 </ContentPage>
