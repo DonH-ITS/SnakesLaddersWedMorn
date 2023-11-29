@@ -10,6 +10,17 @@ namespace SnakesLaddersWedMorn
             CreatetheGrid();
         }
 
+        private int whichPosition(int row, int col) {
+            if(row % 2 == 0) {
+                int start = 100 - row * 10;
+                return start - col;
+            }
+            else {
+                int start = (9 - row) * 10 + 1;
+                return start + col;
+            }
+        }
+
         private void CreatetheGrid() {
             for (int i = 0; i < 10; ++i) {
                 for (int j = 0; j < 10; ++j) {
