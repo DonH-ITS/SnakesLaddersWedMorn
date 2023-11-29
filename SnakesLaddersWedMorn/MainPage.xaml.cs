@@ -21,6 +21,11 @@ namespace SnakesLaddersWedMorn
             }
         }
 
+        private LayoutOptions whichLayout(int row) {
+            if (row % 2 == 0) return LayoutOptions.End;
+            else return LayoutOptions.Start;
+        }
+
         private void CreatetheGrid() {
             for (int i = 0; i < 10; ++i) {
                 for (int j = 0; j < 10; ++j) {
@@ -28,7 +33,7 @@ namespace SnakesLaddersWedMorn
                     {
                         StrokeThickness = 4,
                         Background = gridColour,
-                        Padding = new Thickness(4, 4),
+                        Padding = new Thickness(2, 2),
                         HorizontalOptions = LayoutOptions.Fill,
                         VerticalOptions = LayoutOptions.Fill,
                         StrokeShape = new RoundRectangle
@@ -46,9 +51,10 @@ namespace SnakesLaddersWedMorn
                         },
                         Content = new Label
                         {
-                            Text = "1",
+                            Text = whichPosition(i,j).ToString(),
                             TextColor = Colors.White,
-                            FontSize = 18,
+                            FontSize = 10,
+                            HorizontalOptions = whichLayout(i),
                             FontAttributes = FontAttributes.Bold
                         }
                     };
