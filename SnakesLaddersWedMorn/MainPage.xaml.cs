@@ -6,6 +6,7 @@ namespace SnakesLaddersWedMorn
     {
         private Color gridColour = Color.FromArgb("#2B0B98");
         private Random random;
+        private Color DICE_COLOUR = Color.FromArgb("#000000");
         public MainPage() {
             InitializeComponent();
             CreatetheGrid();
@@ -69,6 +70,27 @@ namespace SnakesLaddersWedMorn
         private void RollDice_Clicked(object sender, EventArgs e) {
             int roll = random.Next(1, 7);
            // RollLbl.Text = roll.ToString();
+        }
+
+        private Ellipse drawcircle() {
+            Ellipse ell = new Ellipse()
+            {
+                Fill = DICE_COLOUR,
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center
+            };
+            return ell;
+        }
+
+        private void FillDiceGrid(int rollcount) {
+            switch (rollcount) {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+            }
         }
     }
 }
