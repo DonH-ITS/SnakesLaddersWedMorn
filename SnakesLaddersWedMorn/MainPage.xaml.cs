@@ -68,7 +68,7 @@ namespace SnakesLaddersWedMorn
 
         private void RollDice_Clicked(object sender, EventArgs e) {
             int roll = random.Next(1, 7);
-            RollLbl.Text = roll.ToString();
+           // RollLbl.Text = roll.ToString();
         }
     }
 }
