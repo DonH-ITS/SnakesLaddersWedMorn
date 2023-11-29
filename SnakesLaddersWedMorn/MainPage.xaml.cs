@@ -67,9 +67,39 @@ namespace SnakesLaddersWedMorn
             }
         }
 
-        private void RollDice_Clicked(object sender, EventArgs e) {
-            int roll = random.Next(1, 7);
+        private async void RollDice_Clicked(object sender, EventArgs e) {
+            await RolltheDice();
            // RollLbl.Text = roll.ToString();
+        }
+
+        private async Task RolltheDice() {
+            int numberofrolls = random.Next(4, 10);
+            int roll;
+            int lastroll = 0;
+            for (int i = 0; i < numberofrolls; i++) {
+                do {
+                    roll = random.Next(1, 7);
+                } while (roll == lastroll);
+                lastroll = roll;
+                await BorderDice.RotateYTo(BorderDice.RotationY + 90, 150);
+                CleartheDiceGrid(DiceGrid);
+                FillDiceGrid(roll, DiceGrid);
+                await BorderDice.RotateYTo(BorderDice.RotationY + 90, 150);
+            }
+        }
+
+        private static void CleartheDiceGrid(Grid grid) {
+            List<View> childrenToRemove = new();
+            foreach (var item in grid.Children) {
+                if (item.GetType() == typeof(Ellipse)) {
+                    childrenToRemove.Add((Ellipse)item);
+                }
+            }
+
+            //Actually remove them from the Grid
+            foreach (var item in childrenToRemove) {
+                grid.Remove(item);
+            }
         }
 
         private Ellipse drawcircle() {

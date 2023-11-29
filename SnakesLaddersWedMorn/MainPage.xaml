@@ -9,7 +9,7 @@
 
         <!--<Image Source="snakeboard.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10"/> -->
        <!-- <Label x:Name="RollLbl" Grid.Row="11" Grid.Column="1"/>-->
-        <Border Grid.Row="10" Scale="0.9" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" StrokeThickness="2"
+        <Border x:Name="BorderDice" Grid.Row="10" Scale="0.9" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" StrokeThickness="2"
         StrokeShape="RoundRectangle 2,2,2,2"
         Background="#FFFFFF"
         Padding="1,1,1,1"
