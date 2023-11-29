@@ -5,9 +5,11 @@ namespace SnakesLaddersWedMorn
     public partial class MainPage : ContentPage
     {
         private Color gridColour = Color.FromArgb("#2B0B98");
+        private Random random;
         public MainPage() {
             InitializeComponent();
             CreatetheGrid();
+            random = new Random();
         }
 
         private int whichPosition(int row, int col) {
@@ -62,6 +64,11 @@ namespace SnakesLaddersWedMorn
                 }
 
             }
+        }
+
+        private void RollDice_Clicked(object sender, EventArgs e) {
+            int roll = random.Next(1, 7);
+            RollLbl.Text = roll.ToString();
         }
     }
 }

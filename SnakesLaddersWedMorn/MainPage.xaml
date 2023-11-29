@@ -3,15 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SnakesLaddersWedMorn.MainPage"
              Title="Snakes and Ladders">
-
     <Grid x:Name="GameBoard" HorizontalOptions="Center" 
-       HeightRequest="480" WidthRequest="480" RowDefinitions="*,*,*,*,*,*,*,*,*,*"
+       HeightRequest="576" WidthRequest="480" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
        ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" BackgroundColor="Blue">
 
         <!--<Image Source="snakeboard.png" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10"/> -->
-        
-        
+        <Label x:Name="RollLbl" Grid.Row="11" Grid.Column="1"/>
+        <Button x:Name="RollDice" Text="Roll Dice" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="2"
+                Clicked="RollDice_Clicked"/>
     </Grid>
+
+       
 
 
 </ContentPage>
