@@ -82,13 +82,41 @@ namespace SnakesLaddersWedMorn
             return ell;
         }
 
-        private void FillDiceGrid(int rollcount) {
+        private void FillDiceGrid(int rollcount, Grid grid) {
             switch (rollcount) {
                 case 1:
-
+                    grid.Add(drawcircle(), 1, 1);
                     break;
                 case 2:
-
+                    grid.Add(drawcircle(), 0, 0);
+                    grid.Add(drawcircle(), 2, 2);
+                    break;
+                case 3:
+                    for(int i=0; i<3; ++i) {
+                        grid.Add(drawcircle(), i, i);
+                    }
+                    break;
+                case 4:
+                    for (int j = 0; j < 3; j += 2) {
+                        for (int k = 0; k < 3; k += 2) {
+                            grid.Add(drawcircle(), j, k);
+                        }
+                    }
+                    break;
+                case 5:
+                    for (int j = 0; j < 3; j += 2) {
+                        for (int k = 0; k < 3; k += 2) {
+                            grid.Add(drawcircle(), j, k);
+                        }
+                    }
+                    grid.Add(drawcircle(), 1, 1);
+                    break;
+                case 6:
+                    for (int j = 0; j < 3; j += 2) {
+                        for (int k = 0; k < 3; ++k) {
+                            grid.Add(drawcircle(), k, j);
+                        }
+                    }
                     break;
             }
         }
