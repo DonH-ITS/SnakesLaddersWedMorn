@@ -112,7 +112,7 @@ namespace SnakesLaddersWedMorn
 
         private async Task RolltheDice() {
             int numberofrolls = random.Next(4, 10);
-            int roll;
+            int roll = 0;
             int lastroll = 0;
             BorderDice.RotationY = 0;
             for (int i = 0; i < numberofrolls; i++) {
@@ -125,6 +125,7 @@ namespace SnakesLaddersWedMorn
                 FillDiceGrid(roll, DiceGrid);
                 await BorderDice.RotateYTo(BorderDice.RotationY + 90, 150);
             }
+            await playerList[whichPlayerTurn].MoveThePlayer(roll);
         }
 
         
