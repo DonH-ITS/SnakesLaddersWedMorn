@@ -7,9 +7,27 @@ namespace SnakesLaddersWedMorn
         private Color gridColour = Color.FromArgb("#2B0B98");
         private Random random;
         private Color DICE_COLOUR = Color.FromArgb("#000000");
+        private bool diceisrolling = false;
+
+        public bool DiceIsRolling
+        {
+            get => diceisrolling;
+            set
+            {
+                if (diceisrolling == value)
+                    return;
+                diceisrolling = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NotDiceIsRolling));
+            }
+        }
+
+        public bool NotDiceIsRolling => !DiceIsRolling;
+
         public MainPage() {
             InitializeComponent();
             CreatetheGrid();
+            BindingContext = this;
             random = new Random();
         }
 
@@ -29,12 +47,13 @@ namespace SnakesLaddersWedMorn
             else return LayoutOptions.Start;
         }
 
+
         private void CreatetheGrid() {
             for (int i = 0; i < 10; ++i) {
                 for (int j = 0; j < 10; ++j) {
                     Border border = new Border
                     {
-                        StrokeThickness = 4,
+                        StrokeThickness = 2,
                         Background = gridColour,
                         Padding = new Thickness(2, 2),
                         HorizontalOptions = LayoutOptions.Fill,
@@ -63,12 +82,15 @@ namespace SnakesLaddersWedMorn
                     };
                     GameBoard.Add(border, j, i);
                 }
-
             }
         }
 
         private async void RollDice_Clicked(object sender, EventArgs e) {
+            if (diceisrolling)
+                return;
+            diceisrolling = true;
             await RolltheDice();
+            diceisrolling = false; 
            // RollLbl.Text = roll.ToString();
         }
 
@@ -76,6 +98,7 @@ namespace SnakesLaddersWedMorn
             int numberofrolls = random.Next(4, 10);
             int roll;
             int lastroll = 0;
+            BorderDice.RotationY = 0;
             for (int i = 0; i < numberofrolls; i++) {
                 do {
                     roll = random.Next(1, 7);
@@ -88,6 +111,7 @@ namespace SnakesLaddersWedMorn
             }
         }
 
+        
         private static void CleartheDiceGrid(Grid grid) {
             List<View> childrenToRemove = new();
             foreach (var item in grid.Children) {
