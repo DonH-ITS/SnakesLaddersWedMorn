@@ -86,11 +86,11 @@ namespace SnakesLaddersWedMorn
         }
 
         private async void RollDice_Clicked(object sender, EventArgs e) {
-            if (diceisrolling)
+            if (DiceIsRolling)
                 return;
-            diceisrolling = true;
+            DiceIsRolling = true;
             await RolltheDice();
-            diceisrolling = false; 
+            DiceIsRolling = false; 
            // RollLbl.Text = roll.ToString();
         }
 
