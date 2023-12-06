@@ -8,7 +8,7 @@ namespace SnakesLaddersWedMorn
         private int row;
         private int col;
         private Image image;
-        static private Grid grid;
+        static public Grid grid;
 
         public Player(Image img) {
             row = 9;

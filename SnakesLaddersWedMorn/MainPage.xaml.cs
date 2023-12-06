@@ -8,6 +8,8 @@ namespace SnakesLaddersWedMorn
         private Random random;
         private Color DICE_COLOUR = Color.FromArgb("#000000");
         private bool diceisrolling = false;
+        private List<Player> playerList;
+        private int whichPlayerTurn;
 
         public bool DiceIsRolling
         {
@@ -26,9 +28,23 @@ namespace SnakesLaddersWedMorn
 
         public MainPage() {
             InitializeComponent();
-            CreatetheGrid();
+            InitialiseAllVariables();
             BindingContext = this;
+            
+        }
+        private void InitialiseAllVariables() {
+            CreatetheGrid();
             random = new Random();
+            SetUpThePlayers(1);
+        }
+
+        private void SetUpThePlayers(int amount) {
+            playerList = new List<Player>();
+            whichPlayerTurn = 0;
+            Player.grid = GameBoard;
+            for(int i= 0; i < amount; i++) {
+                playerList.Add(new Player(Player1Piece));
+            }
         }
 
         private int whichPosition(int row, int col) {
