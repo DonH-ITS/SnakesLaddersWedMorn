@@ -77,7 +77,74 @@ namespace SnakesLaddersWedMorn
         }
 
         private void placesnakeonboard() {
+            int Gridheight = Math.Abs(StartRow - EndRow) + 1;
+            int Gridwidth = Math.Abs(StartCol - EndCol) + 1;
+            double xStep = grid.WidthRequest / 10;
+            double yStep = grid.HeightRequest / 12;
 
+            if (Gridheight == 4 && Gridwidth == 3) {
+                place4x3snake(xStep, yStep);
+            }
+            else if (Gridheight == 3 && Gridwidth == 2) {
+                place3x2snake(xStep, yStep);
+            }
+            else {
+                //Diagonal or straight Snakes, similar code to ladders
+                placeothersnake(xStep, yStep, Gridwidth, Gridheight);
+            }
+        }
+
+        private void place4x3snake(double xStep, double yStep) {
+            CreatetheImage(4 * (yStep - 5), 3 * (xStep - 5), "snake3.png");
+            if (StartCol < EndCol) {
+                image.SetValue(Grid.ColumnProperty, StartCol);
+            }
+            else {
+                image.SetValue(Grid.ColumnProperty, EndCol);
+                image.RotationY = 180;
+            }
+            image.SetValue(Grid.RowProperty, StartRow);
+            image.SetValue(Grid.RowSpanProperty, 4);
+            image.SetValue(Grid.ColumnSpanProperty, 3);
+        }
+
+        private void place3x2snake(double xStep, double yStep) {
+            CreatetheImage(3 * (yStep - 5), 2 * (xStep - 5), "snake2.png");
+            if (StartCol < EndCol) {
+                image.SetValue(Grid.ColumnProperty, StartCol);
+            }
+            else {
+                image.SetValue(Grid.ColumnProperty, EndCol);
+                image.RotationY = 180;
+            }
+            image.SetValue(Grid.RowProperty, StartRow);
+            image.SetValue(Grid.RowSpanProperty, 3);
+            image.SetValue(Grid.ColumnSpanProperty, 2);
+        }
+
+        private void placeothersnake(double xStep, double yStep, int width, int height) {
+            //Pythagoras Theorem
+            if (width == 1) {
+                CreatetheImage(yStep * height - 10, xStep - 5, "snake1.png");
+            }
+            else {
+                double endHeight = Math.Sqrt(width * width + height * height);
+                CreatetheImage(endHeight * yStep - 20, xStep - 20, "snake1.png");
+                double direction = 1.0;
+                if (StartCol < EndCol)
+                    direction = -1.0;
+                double tan = direction * width / height;
+                double radian = Math.Atan(tan);
+                double degrees = radian * 180 / Math.PI;
+                image.Rotation = degrees;
+            }
+            image.SetValue(Grid.RowProperty, StartRow);
+            image.SetValue(Grid.RowSpanProperty, height);
+            if (StartCol < EndCol)
+                image.SetValue(Grid.ColumnProperty, StartCol);
+            else
+                image.SetValue(Grid.ColumnProperty, EndCol);
+            image.SetValue(Grid.ColumnSpanProperty, width);
         }
 
         public bool IsStartPositionHere(int r, int c) {
