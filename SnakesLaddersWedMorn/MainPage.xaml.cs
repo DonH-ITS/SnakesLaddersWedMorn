@@ -9,6 +9,7 @@ namespace SnakesLaddersWedMorn
         private Color DICE_COLOUR = Color.FromArgb("#000000");
         private bool diceisrolling = false;
         private List<Player> playerList;
+        private List<SnakeLadder> snakeLadderList;
         private int whichPlayerTurn;
 
         public bool DiceIsRolling
@@ -36,6 +37,17 @@ namespace SnakesLaddersWedMorn
             CreatetheGrid();
             random = new Random();
             SetUpThePlayers(1);
+            PlaceSnakeLadders();
+        }
+
+        private void PlaceSnakeLadders() {
+            SnakeLadder.grid = GameBoard;
+            snakeLadderList = new List<SnakeLadder>();
+            snakeLadderList.Add(new SnakeLadder(9, 7, 6, 6));
+
+            snakeLadderList.Add(new SnakeLadder(7, 5, 0, 1));
+
+            snakeLadderList.Add(new SnakeLadder(5, 3, 9, 6));
         }
 
         private void SetUpThePlayers(int amount) {
