@@ -2,13 +2,23 @@
 
 namespace SnakesLaddersWedMorn
 {
-    public class Player
-    {
+    public class Player {
         private int position;
         private int row;
         private int col;
         private Image image;
         static public Grid grid;
+
+        public int[] CurrentPosition{
+            get
+            {
+                int[] pos = new int[2];
+                pos[0] = row;
+                pos[1] = col;
+                return pos;
+            }
+
+        }
 
         public Player(Image img) {
             row = 9;
@@ -41,12 +51,40 @@ namespace SnakesLaddersWedMorn
             image.SetValue(Grid.ColumnProperty, col);
         }
 
-        public async Task MoveVertically() {
+        private async Task MoveVertically() {
             row--;
             double step = grid.Height / 12;
             await image.TranslateTo(0, step * -1, 250);
             image.TranslationY = 0;
             image.SetValue(Grid.RowProperty, row);
+        }
+
+        public async Task MovebySnakeLadder(int endr, int endc) {
+            int height = endr - row;
+            int width = endc - col; 
+            row = endr;
+            col = endc;
+
+            double xstep = grid.Width / 10;
+            double ystep = grid.Height / 12;
+            await image.TranslateTo(xstep*width, ystep*height, 400);
+            image.TranslationY = 0;
+            image.TranslationX = 0;
+            image.SetValue(Grid.RowProperty, row);
+            image.SetValue(Grid.ColumnProperty, col);
+            position = whichPosition(row, col);
+
+        }
+
+        static private int whichPosition(int row, int col) {
+            if (row % 2 == 0) {
+                int start = 100 - row * 10;
+                return start - col;
+            }
+            else {
+                int start = (9 - row) * 10 + 1;
+                return start + col;
+            }
         }
     }
 }

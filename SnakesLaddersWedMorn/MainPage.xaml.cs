@@ -137,7 +137,15 @@ namespace SnakesLaddersWedMorn
                 FillDiceGrid(roll, DiceGrid);
                 await BorderDice.RotateYTo(BorderDice.RotationY + 90, 150);
             }
+            roll = 20;
             await playerList[whichPlayerTurn].MoveThePlayer(roll);
+
+            int[] curpos = playerList[whichPlayerTurn].CurrentPosition;
+            foreach(var boardpiece in snakeLadderList) {
+                if(boardpiece.IsStartPositionHere(curpos[0], curpos[1])) {
+                    await playerList[whichPlayerTurn].MovebySnakeLadder(boardpiece.EndPosition[0], boardpiece.EndPosition[1]);
+                }
+            }
         }
 
         

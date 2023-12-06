@@ -11,7 +11,19 @@ namespace SnakesLaddersWedMorn
         private int EndRow;
         private Image image;
         static public Grid grid;
-        
+
+        public int[] EndPosition
+        {
+            get
+            {
+                int[] pos = new int[2];
+                pos[0] = EndRow;
+                pos[1] = EndCol;
+                return pos;
+            }
+
+        }
+
         public SnakeLadder(int StartR, int EndR, int StartC, int EndC) {
             this.StartRow = StartR;
             this.EndRow = EndR;
@@ -66,6 +78,14 @@ namespace SnakesLaddersWedMorn
 
         private void placesnakeonboard() {
 
+        }
+
+        public bool IsStartPositionHere(int r, int c) {
+            /* if (r == StartRow && c == StartCol)
+                 return true;
+             else
+                 return false;*/
+            return (r == StartRow && c == StartCol);
         }
 
     }
