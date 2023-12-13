@@ -10,7 +10,7 @@ public partial class SettingsPage : ContentPage
 		BindingContext = set;
 	}
 
-    private void SaveBtn_Clicked(object sender, EventArgs e) {
-
+    private async void SaveBtn_Clicked(object sender, EventArgs e) {
+		await Navigation.PopAsync();
     }
 }

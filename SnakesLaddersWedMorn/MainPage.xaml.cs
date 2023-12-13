@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Layouts;
 
 namespace SnakesLaddersWedMorn
 {
@@ -12,6 +13,7 @@ namespace SnakesLaddersWedMorn
         private List<SnakeLadder> snakeLadderList;
         private int whichPlayerTurn;
         private Settings set;
+        private bool fromSettingsPage = false;
 
         public bool DiceIsRolling
         {
@@ -237,7 +239,16 @@ namespace SnakesLaddersWedMorn
         }
 
         private async void Settings_Clicked(object sender, EventArgs e) {
+            fromSettingsPage = true;
             await Navigation.PushAsync(new SettingsPage(set));
+        }
+
+        protected override void OnNavigatedTo(NavigatedToEventArgs args) {
+            if (fromSettingsPage) {
+                UpdateSettings();
+                fromSettingsPage = false;
+            }
+            base.OnNavigatedTo(args);
         }
     }
 }
