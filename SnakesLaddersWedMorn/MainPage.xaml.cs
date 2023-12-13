@@ -13,6 +13,7 @@ namespace SnakesLaddersWedMorn
         private List<Player> playerList;
         private List<SnakeLadder> snakeLadderList;
         private int whichPlayerTurn;
+        private int numberofplayers;
         private Settings set;
         private bool fromSettingsPage = false;
 
@@ -56,7 +57,7 @@ namespace SnakesLaddersWedMorn
             UpdateSettings();
             CreatetheGrid();
             random = new Random();
-            SetUpThePlayers(1);
+            SetUpThePlayers(Preferences.Default.Get("noofplayers", 2));
             PlaceSnakeLadders();
         }
 
@@ -97,8 +98,9 @@ namespace SnakesLaddersWedMorn
             whichPlayerTurn = 0;
             Player.grid = GameBoard;
             for(int i= 0; i < amount; i++) {
-                playerList.Add(new Player(Player1Piece));
+                playerList.Add(new Player(i));
             }
+            numberofplayers = amount;
         }
 
         private int whichPosition(int row, int col) {
@@ -193,6 +195,10 @@ namespace SnakesLaddersWedMorn
                     await playerList[whichPlayerTurn].MovebySnakeLadder(boardpiece.EndPosition[0], boardpiece.EndPosition[1]);
                 }
             }
+
+            whichPlayerTurn++;
+            if (whichPlayerTurn == numberofplayers)
+                whichPlayerTurn = 0;
         }
 
         

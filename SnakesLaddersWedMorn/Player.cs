@@ -20,11 +20,16 @@ namespace SnakesLaddersWedMorn
 
         }
 
-        public Player(Image img) {
+        public Player(int playerno) {
             row = 9;
             col = 0;
             position = 1;
-            this.image = img;
+            image = new Image()
+            {
+                Source = ImageSource.FromFile("player" + (playerno + 1) + ".png"),
+                ZIndex = 10,
+            };
+            grid.Add(image, col, row);
         }
 
         public async Task MoveThePlayer(int amount) {

@@ -40,8 +40,8 @@
             <Grid x:Name="DiceGrid" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" BackgroundColor="White"/>
 
         </Border>
-        <Image x:Name="Player1Piece" Source="player1.png" 
-               Grid.Row="9" Grid.Column="0" ZIndex="10"/>
+      <!--  <Image x:Name="Player1Piece" Source="player1.png" 
+               Grid.Row="9" Grid.Column="0" ZIndex="10"/>-->
 
         <Button x:Name="RollDice" Text="Roll Dice" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="2"
                 Clicked="RollDice_Clicked" IsEnabled="{Binding NotDiceIsRolling}"/>
