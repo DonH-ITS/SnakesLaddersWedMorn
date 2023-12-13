@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls.Shapes;
+﻿using System.Text.Json;
+using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Layouts;
 
 namespace SnakesLaddersWedMorn
@@ -37,7 +38,21 @@ namespace SnakesLaddersWedMorn
             
         }
         private void InitialiseAllVariables() {
-            set = new Settings();
+            string filename = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, "settings.json");
+            if (File.Exists(filename)) {
+                try {
+                    using (StreamReader reader = new StreamReader(filename)) {
+                        string jsonstring = reader.ReadToEnd();
+                        set = JsonSerializer.Deserialize<Settings>(jsonstring);
+                    }
+                }
+                catch {
+                    set = new Settings();
+                }
+            }
+            else {
+                set = new Settings();
+            }
             UpdateSettings();
             CreatetheGrid();
             random = new Random();
@@ -134,7 +149,13 @@ namespace SnakesLaddersWedMorn
                             FontAttributes = FontAttributes.Bold
                         }
                     };
-                    border.SetDynamicResource(Border.BackgroundColorProperty, "GridColour1");
+                    if(whichPosition(i,j) % 2 == 0)
+                        border.SetDynamicResource(Border.BackgroundColorProperty, "GridColour1");
+                    else
+                        border.SetDynamicResource(Border.BackgroundColorProperty, "GridColour2");
+                    /*
+                      border.SetDynamicResource(Border.BackgroundColorProperty, whichPosition(i,j) % 2 == 0 ? "GridColour1" : GridColour2");
+                    */
                     GameBoard.Add(border, j, i);
                 }
             }

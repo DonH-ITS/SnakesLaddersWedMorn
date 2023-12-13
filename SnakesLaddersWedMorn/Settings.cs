@@ -2,6 +2,7 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 namespace SnakesLaddersWedMorn 
 {
@@ -44,6 +45,20 @@ namespace SnakesLaddersWedMorn
             //Set Default Values
             GRID_COLOUR1 = "#2B0B98";
             GRID_COLOUR2 = "#2B0B98";
+        }
+
+        public bool WritetoJson() {
+            string jsonalice = JsonSerializer.Serialize(this);
+            string filename = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, "settings.json");
+            try {
+                using (StreamWriter writer = new StreamWriter(filename)) {
+                    writer.Write(jsonalice);
+                }
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
