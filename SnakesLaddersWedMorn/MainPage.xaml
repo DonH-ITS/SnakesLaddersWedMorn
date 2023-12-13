@@ -3,6 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SnakesLaddersWedMorn.MainPage"
              Title="Snakes and Ladders">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{AppThemeBinding Light=settings.png, Dark=settingsdark.png}" Clicked="Settings_Clicked"
+                     Text="Settings" />
+    </ContentPage.ToolbarItems>
     <Grid x:Name="GameBoard" HorizontalOptions="Center" 
        HeightRequest="576" WidthRequest="480" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
        ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" BackgroundColor="Blue">
