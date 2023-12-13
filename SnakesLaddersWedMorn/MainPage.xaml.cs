@@ -36,8 +36,17 @@ namespace SnakesLaddersWedMorn
             InitializeComponent();
             InitialiseAllVariables();
             BindingContext = this;
-            
+          //  this.LayoutChanged += OnWindowChange;
         }
+     /*   private void OnWindowChange(object sender, EventArgs e) {
+              if(this.Width <= 0)
+                  return;
+              if (this.Width >= 480)
+                  return;
+              double scale = (this.Width - 8) / 480.0;
+            GameBoard.Scale = scale;
+          }
+     */
         private void InitialiseAllVariables() {
             string filename = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, "settings.json");
             if (File.Exists(filename)) {
@@ -121,10 +130,21 @@ namespace SnakesLaddersWedMorn
 
 
         private void CreatetheGrid() {
+            double screenwidth = Preferences.Default.Get("screenwidth", 480.0);
+            if(screenwidth < 480) {
+                int newwidth = ((int)screenwidth / 10) * 10;
+                int newheight = ((int)screenwidth / 10) * 12;
+                GameBoard.HeightRequest = newheight;
+                GameBoard.WidthRequest = newwidth;
+            }
+            int margin = 0;
+            if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                margin = -2;
             for (int i = 0; i < 10; ++i) {
                 for (int j = 0; j < 10; ++j) {
                     Border border = new Border
                     {
+                        Margin = margin,
                         StrokeThickness = 2,
                         Padding = new Thickness(2, 2),
                         HorizontalOptions = LayoutOptions.Fill,

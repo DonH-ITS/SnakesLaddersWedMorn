@@ -18,6 +18,7 @@ public partial class WelcomePage : ContentPage
 
     private void PlayGame_Clicked(object sender, EventArgs e) {
         Preferences.Default.Set("noofplayers", noOfPlayers);
+        Preferences.Default.Set("screenwidth", this.Width);
         Shell.Current.GoToAsync("//MainPage");
     }
 }
