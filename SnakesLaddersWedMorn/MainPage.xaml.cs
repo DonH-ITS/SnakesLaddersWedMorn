@@ -36,10 +36,16 @@ namespace SnakesLaddersWedMorn
         }
         private void InitialiseAllVariables() {
             set = new Settings();
+            UpdateSettings();
             CreatetheGrid();
             random = new Random();
             SetUpThePlayers(1);
             PlaceSnakeLadders();
+        }
+
+        private void UpdateSettings() {
+            Resources["GridColour1"] = Color.FromArgb(set.GRID_COLOUR1);
+            Resources["GridColour2"] = Color.FromArgb(set.GRID_COLOUR2);
         }
 
         private void PlaceSnakeLadders() {
@@ -101,7 +107,6 @@ namespace SnakesLaddersWedMorn
                     Border border = new Border
                     {
                         StrokeThickness = 2,
-                        Background = gridColour,
                         Padding = new Thickness(2, 2),
                         HorizontalOptions = LayoutOptions.Fill,
                         VerticalOptions = LayoutOptions.Fill,
@@ -127,6 +132,7 @@ namespace SnakesLaddersWedMorn
                             FontAttributes = FontAttributes.Bold
                         }
                     };
+                    border.SetDynamicResource(Border.BackgroundColorProperty, "GridColour1");
                     GameBoard.Add(border, j, i);
                 }
             }

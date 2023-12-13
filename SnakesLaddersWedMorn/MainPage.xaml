@@ -8,6 +8,15 @@
         <ToolbarItem IconImageSource="{AppThemeBinding Light=settings.png, Dark=settingsdark.png}" Clicked="Settings_Clicked"
                      Text="Settings" />
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="GridColour1">#00FFAD</Color>
+            <Color x:Key="GridColour2">#FF0000</Color>
+            <Color x:Key="DiceFgColour">#000000</Color>
+            <Color x:Key="DiceBgColour">#FFFFFF</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid x:Name="GameBoard" HorizontalOptions="Center" 
        HeightRequest="576" WidthRequest="480" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
        ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" BackgroundColor="Blue">
