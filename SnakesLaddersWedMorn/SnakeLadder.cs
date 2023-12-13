@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using Windows.ApplicationModel.Calls;
-
+﻿
 namespace SnakesLaddersWedMorn
 {
     public class SnakeLadder
