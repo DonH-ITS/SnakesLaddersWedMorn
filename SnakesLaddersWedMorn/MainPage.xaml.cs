@@ -11,6 +11,7 @@ namespace SnakesLaddersWedMorn
         private List<Player> playerList;
         private List<SnakeLadder> snakeLadderList;
         private int whichPlayerTurn;
+        private Settings set;
 
         public bool DiceIsRolling
         {
@@ -34,6 +35,7 @@ namespace SnakesLaddersWedMorn
             
         }
         private void InitialiseAllVariables() {
+            set = new Settings();
             CreatetheGrid();
             random = new Random();
             SetUpThePlayers(1);
@@ -229,7 +231,7 @@ namespace SnakesLaddersWedMorn
         }
 
         private async void Settings_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new SettingsPage());
+            await Navigation.PushAsync(new SettingsPage(set));
         }
     }
 }

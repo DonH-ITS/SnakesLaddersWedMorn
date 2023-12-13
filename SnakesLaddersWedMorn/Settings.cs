@@ -25,6 +25,27 @@ namespace SnakesLaddersWedMorn
             }
         }
 
+        public string GRID_COLOUR2
+        {
+            get
+            {
+                return grid_colour2;
+            }
+            set
+            {
+                if (value != grid_colour2) {
+                    grid_colour2 = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public Settings() {
+            //Set Default Values
+            GRID_COLOUR1 = "#2B0B98";
+            GRID_COLOUR2 = "#2B0B98";
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
